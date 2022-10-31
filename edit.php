@@ -33,6 +33,8 @@ $book = $stmtBook->fetch();
 $stmtBookAuthors = $pdo->prepare('SELECT * FROM authors LEFT JOIN book_authors ON authors.id=book_authors.author_id WHERE book_authors.book_id = :id');
 $stmtBookAuthors->execute(['id' => $id]);
 
+$stmtAuthors = $pdo->query('SELECT DISTINCT a.* FROM authors a LEFT JOIN book_authors ba ON a.id=ba.author_id WHERE ba.book_id <> :book_id');
+$stmtAuthors->execute(['book_id' => $id]);
 ?>
 
 
@@ -78,4 +80,3 @@ $stmtBookAuthors->execute(['id' => $id]);
 
 </body>
 </html>
-
