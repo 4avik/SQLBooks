@@ -30,10 +30,10 @@ $book = $stmtBook->fetch();
 
 // var_dump($book);
 
-$stmtBookAuthors = $pdo->prepare('SELECT * FROM authors LEFT JOIN book_authors ON authors.id=book_authors.author_id WHERE book_authors.book_id = :id');
-$stmtBookAuthors->execute(['id' => $id]);
+$stmtBookAuthors = $pdo->prepare('SELECT * FROM book_authors ba LEFT JOIN authors a ON a.id=ba.author_id WHERE ba.book_id = :book_id');
+$stmtBookAuthors->execute(['book_id' => $id]);
 
-$stmtAuthors = $pdo->query('SELECT DISTINCT a.* FROM authors a LEFT JOIN book_authors ba ON a.id=ba.author_id WHERE ba.book_id <> :book_id');
+$stmtAuthors = $pdo->prepare('SELECT * FROM authors WHERE id NOT IN (SELECT auhtor_id FROM book_authors WHERE book_id = :book_id');
 $stmtAuthors->execute(['book_id' => $id]);
 ?>
 
