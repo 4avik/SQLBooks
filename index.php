@@ -2,12 +2,12 @@
 
 require_once('connection.php');
 
-#echo '<ul>';
+// echo '<ul>';
 
 $stmt = $pdo->query('SELECT * FROM books WHERE is_deleted=0');
 
 
-# while ($row = $stmt->fetch())
+// while ($row = $stmt->fetch())
 ?>
 
 
