@@ -33,7 +33,6 @@ header("refresh: 5;");
     <!-- <h3><span>Laos:</span> <span> <? #=$book['stock_saldo']; ?> </span></h3> -->
 
     <h3>Authors:</h3>
-
     <?php
     while ($author = $stmt->fetch())
     {
