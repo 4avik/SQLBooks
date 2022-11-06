@@ -4,24 +4,24 @@ require_once('connection.php');
 
 $id = $_GET['id'];
 
-if ( isset($_POST['edit']) && $_POST['edit']== "Salvesta" ) {
+if ( isset($_POST['edit']) && $_POST['edit'] == "Salvesta" ) {
     $stmt = $pdo->prepare('UPDATE books SET title = :title, stock_saldo = :stock_saldo, price = :price WHERE id = :id');
     $stmt->execute(['title' => $_POST['title'], 'stock_saldo' => $_POST['stock-saldo'], 'price' => str_replace(',', '.', $_POST['price']), 'id' => $id]); #nt str replace asendab koma punktiga
 
     header('Location: book.php?id=' . $id);
 };
 
-# SELECT * FROM 'authors'
-#     <main>
-# <ul> 
-# <?php while ($book = $stmt->fetch()) { ?>
+// SELECT * FROM 'authors'
+//     <main>
+// <ul> 
+// <?php while ($book = $stmt->fetch()) { ?>
 <!--  <li>
-#          <a href="book.php?id=<?#=$book['id'];?>"><?#=$book['title'];?></a>
-#     </li>
-# <?#php } ?>
-# </ul>
-# </main>
-# -->
+//          <a href="book.php?id=<?#=$book['id'];?>"><?#=$book['title'];?></a>
+//    </li>
+// <?#php } ?>
+// </ul>
+// </main>
+// -->
 
 <?
 $stmtBook = $pdo->prepare('SELECT * FROM books WHERE id = :id');
@@ -71,8 +71,11 @@ $stmtAuthors->execute(['book_id' => $id]);
     <br>
     <?php while ($bookAuthor = $stmtBookAuthors->fetch()) { ?>
         <div class="author-row">
-            <?=$author['first_name'];?> <?=$author['last_name']?>
-            <span class="material-symbols-outlined" style=""></span>
+            <span class="author-name">
+                <?=$bookAuthor['first_name'];?> <?=$bookAuthor['last_name']?>
+            </span>
+            <span class="material-symbols-outlined" style="font-size: 16px; vertical-align; text-bottom;">delete</span>
+            <input class="author-id" type="hidden" name="author[]" value="<?=$bookAuthor['id'];?>">
         </div>
     <?php } ?>
     <input type="submit" value="Salvesta" name="edit">
