@@ -5,14 +5,14 @@
 
 require_once('connection.php');
 
-var.dump($_POST )
+// var.dump($_POST )
 
 
 if ( isset($_POST['add-author']) ) {
       $stmt = $pdo->prepare('INSERT INTO authors (first_name, last_name) VALUES (:first_name, :last_name)');
-      $stmt-execute(['fist_name' => $_POST['first-name'],  'last_name' => $_POST['last-name']]);
+      $stmt->execute(['fist_name' => $_POST['first-name'],  'last_name' => $_POST['last-name']]);
       
-      header('Location: index.php')
+      header('Location: index.php');
 } #lingi ja vormi kaudu lehele if post on edit, siis update päring. autori lisamine insert päring peale host nupule vajutamist
 
 ?>
@@ -27,8 +27,8 @@ if ( isset($_POST['add-author']) ) {
 </head>
 
 <body>
+    <h1>Uue autori lisamine</h1>
     <form action="add_author.php" method="post"> <!-- Posti puhul on parameetrid päringu sees, mitte URL'is -->
-        <h1>Uue autori lisamine</h1>
         <input type="text" name="first-name" palceholder="Eesnimi">
         <br>
         <input type="text" name="last-name" palceholder="Perekonnanimi">
