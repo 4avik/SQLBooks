@@ -13,7 +13,7 @@ if ( isset($_POST['add-author']) ) {
       $stmt->execute(['fist_name' => $_POST['first-name'],  'last_name' => $_POST['last-name']]);
       
       header('Location: index.php');
-} #lingi ja vormi kaudu lehele if post on edit, siis update päring. autori lisamine insert päring peale host nupule vajutamist
+} //lingi ja vormi kaudu lehele if post on edit, siis update päring. autori lisamine insert päring peale host nupule vajutamist
 
 ?>
 
