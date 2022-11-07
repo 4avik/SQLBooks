@@ -10,7 +10,7 @@ require_once('connection.php');
 
 if ( isset($_POST['add-author']) ) {
       $stmt = $pdo->prepare('INSERT INTO authors (first_name, last_name) VALUES (:first_name, :last_name)');
-      $stmt->execute(['fist_name' => $_POST['first-name'],  'last_name' => $_POST['last-name']]);
+      $stmt->execute(['first_name' => $_POST['first-name'],  'last_name' => $_POST['last-name']]);
       
       header('Location: index.php');
 } //lingi ja vormi kaudu lehele if post on edit, siis update päring. autori lisamine insert päring peale host nupule vajutamist
