@@ -4,8 +4,15 @@ require_once('connection.php');
 
 // echo '<ul>';
 
-$stmt = $pdo->query('SELECT * FROM books WHERE is_deleted=0');
+$q = $_GET['q'];
 
+if(isset($q) && $q) {
+     $stmt = $pdo->prepare('SELECT * FROM books WHERE is_deleted=0 AND title LIKE :q');
+     $stmt->execute(['q' => "%{$q}%"]);
+} else {
+$stmt = $pdo->query('SELECT * FROM books WHERE is_deleted=0');
+//Uuri MYSQL Like operator
+}
 
 // while ($row = $stmt->fetch())
 ?>
@@ -22,13 +29,12 @@ $stmt = $pdo->query('SELECT * FROM books WHERE is_deleted=0');
      <title>Raamatupood</title>
 </head>
 <body>
-
      <nav style="display: flex; justify-content: space-between;">
           <a href="add_author.php">Lisa autor</a>
 
           <form action="index.php" method="get">
-               <input type="text" name="search" palceholder="Otsing">
-               <input type="submit" value="Otsi">
+               <input type="text" name="q" palceholder="Otsing" value="<?=$q;?>">
+               <input type="submit" name="search" value="Otsi">
           </form>
      </nav>
 
