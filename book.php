@@ -53,7 +53,7 @@ header("refresh: 5;");
       <span><a href="edit.php?id=<?=$id;?>">Muuda</a></span> 
          <!-- 
             <form action="edit.php" method="POST">
-               <input type="hidden" name="id" value="<?=$id?>">
+               <input type="hidden" name="id" value="<//?=$id?>">
                <input type="submit" value="Muuda" name="edit2">
             </form>
          -->
